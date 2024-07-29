@@ -1,4 +1,4 @@
-import { createFileRoute, Navigate } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react';
 
 import { Badge } from '@/components/ui/badge';
@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
+  DialogDescription
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 
@@ -114,6 +115,21 @@ export function Objek() {
           'Content-Type': 'application/json',
         },
       });
+      const fetchUserReviewData = async () => {
+        try {
+          const response = await fetch(`https://review-apa-saja.fitrah9ramadhan.workers.dev/api/users/${param.objek}/reviews`)
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data: ApiResponse = await response.json();
+          setUserData(data.user[0]);
+          setReviews(data.reviews)
+  
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchUserReviewData()
     } catch (err) {
       throw new Error('Failed to agree with the review');
     }
@@ -127,7 +143,23 @@ export function Objek() {
           'Content-Type': 'application/json',
         },
       });
-      // Handle the response if necessary
+      
+      const fetchUserReviewData = async () => {
+        try {
+          const response = await fetch(`https://review-apa-saja.fitrah9ramadhan.workers.dev/api/users/${param.objek}/reviews`)
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data: ApiResponse = await response.json();
+          setUserData(data.user[0]);
+          setReviews(data.reviews)
+  
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchUserReviewData()
+
     } catch (err) {
       throw new Error('Failed to agree with the review');
     }
@@ -151,8 +183,21 @@ export function Objek() {
         body: JSON.stringify(reviewData),
       });
 
-      Navigate({ to: `/objek/${param.objek}` })
-      // Optionally reset the form here
+      const fetchUserReviewData = async () => {
+        try {
+          const response = await fetch(`https://review-apa-saja.fitrah9ramadhan.workers.dev/api/users/${param.objek}/reviews`)
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data: ApiResponse = await response.json();
+          setUserData(data.user[0]);
+          setReviews(data.reviews)
+  
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchUserReviewData()
       setReviewerName('');
       setReview('');
       setScore(0);
@@ -230,6 +275,7 @@ export function Objek() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Berikan Ulasan</DialogTitle>
+              <DialogDescription>Ulasan ini tidak dapat dihapus, kecuali menghubungi admin</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit}>
               <div className="gap-4 py-4">
@@ -288,8 +334,8 @@ export function Objek() {
                   <br />
                 </div>
                 <DialogFooter>
-                  <DialogClose>
-                    <p>{score}/10</p>
+                  <p>{score}/10</p>
+                  <DialogClose asChild>
                     <button
                       className='w-fit font-semibold tracking-wide bg-indigo-300 px-3 py-1 border-l-2 border-l-indigo-500 hover:border-l-black border-b-2 border-b-indigo-500 hover:border-b-black'
                       type="submit">Submit</button>

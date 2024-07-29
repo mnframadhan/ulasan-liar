@@ -16,10 +16,13 @@ export const BuatObjek: React.FC = () => {
   const [gambar1, setGambar1] = useState<File | null>(null);
   const [gambar2, setGambar2] = useState<File | null>(null);
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const navigate = useNavigate({ from: "/buat-objek" })
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true)
 
     if (!name || !jenis || !description || !gambar1 || !gambar2) {
       alert('Please fill all fields and select both images.');
@@ -47,6 +50,8 @@ export const BuatObjek: React.FC = () => {
       })
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -92,6 +97,8 @@ export const BuatObjek: React.FC = () => {
               <option value="Mall">&nbsp;&nbsp;Mall</option>
               <option value="Pasar">&nbsp;&nbsp;Pasar</option>
               <option className='font-bold' value="Makanan">Makanan</option>
+              <option className='font-bold' value="Barang Pribadi">Barang Pribadi</option>
+              <option className='font-bold' value="Brand">Brand</option>
               {/* Add more options as needed */}
             </select>
           </div>
@@ -126,7 +133,7 @@ export const BuatObjek: React.FC = () => {
 
           <button
             className='w-fit font-semibold tracking-wide bg-indigo-300 px-3 py-1 border-l-2 border-l-indigo-500 hover:border-l-black border-b-2 border-b-indigo-500 hover:border-b-black'
-            type="submit">Submit</button>
+            type="submit">{isLoading ? 'Loading...' : 'Submit'}</button>
         </form>
       </div>
     </>
