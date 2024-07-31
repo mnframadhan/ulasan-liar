@@ -10,6 +10,13 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { SubHeader } from '@/components/SubHeader';
 
+import { 
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  XIcon
+ } from 'react-share'
+
 import {
   Dialog,
   DialogContent,
@@ -95,10 +102,10 @@ export function Objek() {
         }
         const data = await response.json();
 
-        if(data.rating == null) {
+        if (data.rating == null) {
           setRating(0)
         }
-        
+
         setRating(data.rating)
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -124,7 +131,7 @@ export function Objek() {
           const data: ApiResponse = await response.json();
           setUserData(data.user[0]);
           setReviews(data.reviews)
-  
+
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -143,7 +150,7 @@ export function Objek() {
           'Content-Type': 'application/json',
         },
       });
-      
+
       const fetchUserReviewData = async () => {
         try {
           const response = await fetch(`https://review-apa-saja.fitrah9ramadhan.workers.dev/api/users/${param.objek}/reviews`)
@@ -153,7 +160,7 @@ export function Objek() {
           const data: ApiResponse = await response.json();
           setUserData(data.user[0]);
           setReviews(data.reviews)
-  
+
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -192,7 +199,7 @@ export function Objek() {
           const data: ApiResponse = await response.json();
           setUserData(data.user[0]);
           setReviews(data.reviews)
-  
+
         } catch (error) {
           console.error('Error fetching data:', error);
         }
@@ -241,9 +248,22 @@ export function Objek() {
                     </div>
                   )
                 })}
-                <p>( {!rating? null : (rating).toFixed(2)} / 10 )</p>
+                <p>( {!rating ? null : (rating).toFixed(2)} / 10 )</p>
 
               </div>
+                <div className='flex justify-center gap-5'>
+                  <WhatsappShareButton
+                    url={`https://ulasan-liar.pages.dev/objek/${param.objek}}`}
+                    title={`Ulas Apa Saja Disini!\nBerikan Ulasan Untuk:\n${userData.name}\n`}> 
+                    <WhatsappIcon size={32}></WhatsappIcon>
+                  </WhatsappShareButton>
+                  <TwitterShareButton
+                    url={`https://ulasan-liar.pages.dev/objek/${param.objek}`}
+                    title={`Ulas Apa Saja Disini!\nBerikan Ulasan Untuk:\n${userData.name}\n`}>
+                    <XIcon size={32}></XIcon>
+                  </TwitterShareButton>
+                </div>
+                <br />
               <div className='flex gap-4'>
                 <div className='overflow-hidden max-w-[100px] self-center'>
                   <img src="/fly.png" alt="" />

@@ -1,6 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Link } from '@tanstack/react-router'
 
+import {
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  XIcon,
+} from 'react-share';
+
 export const Route = createFileRoute('/')({
   component: Homepage
 })
@@ -14,9 +21,23 @@ function Homepage() {
           <div className='max-w-[175px]'>
             <img src="/main.png" alt="main" />
           </div>
-          <div className='text-center'>
-            <h1 className='text-4xl font-bold tracking-widest'>ULASAN-LIAR.COM</h1>
-            <h1>Ulas apa saja, kritik dan saran terbuka untuk siapapun</h1>
+          <div className='text-center flex flex-col gap-4'>
+            <div>
+              <h1 className='text-4xl font-bold tracking-widest'>ULASAN-LIAR.COM</h1>
+              <h1>Ulas apa saja, kritik dan saran terbuka untuk siapapun</h1>
+            </div>
+            <div className='flex justify-center gap-5'>
+              <WhatsappShareButton 
+                url='https://ulasan-liar.pages.dev/'
+                title='Ulas Apa Saja Disini!'>
+                <WhatsappIcon size={32}></WhatsappIcon>
+              </WhatsappShareButton>
+              <TwitterShareButton 
+                url='https://ulasan-liar.pages.dev/'
+                title='Ulas Apa Saja disini!'>
+                <XIcon size={32}></XIcon>
+              </TwitterShareButton>
+            </div>
           </div>
           <div className='max-w-[175px]'>
             <img src="/main2.png" alt="main2" />
