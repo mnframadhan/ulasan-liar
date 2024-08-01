@@ -10,12 +10,12 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { SubHeader } from '@/components/SubHeader';
 
-import { 
+import {
   WhatsappShareButton,
   WhatsappIcon,
   TwitterShareButton,
   XIcon
- } from 'react-share'
+} from 'react-share'
 
 import {
   Dialog,
@@ -216,72 +216,72 @@ export function Objek() {
 
   return (
     <>
-      <div className='m-8'>
-        <Link to='/main-page' className='w-fit font-semibold tracking-wide bg-amber-300 px-3 py-1 border-l-2 border-l-indigo-500 hover:border-l-black border-b-2 border-b-indigo-500 hover:border-b-black'>Kembali ke Halaman Utama</Link>
+      <div className='m-4 md:m-8'>
+        <Link to='/main-page' className='text-xs md:text-md w-fit font-semibold tracking-wide bg-amber-300 px-3 py-1 border-l-2 border-l-indigo-500 hover:border-l-black border-b-2 border-b-indigo-500 hover:border-b-black'>Kembali ke Halaman Utama</Link>
       </div>
-      <div className='px-8 my-8 font-corbel flex flex-col items-center'>
+      <div className='font-corbel flex flex-col items-center'>
         {userData && (
           <div className=''>
-            <div key={userData.id} className='flex flex-col gap-4 items-center'>
-              <div className='flex gap-4'>
+            <div key={userData.id} className='flex flex-col md:gap-4 items-center'>
+              <div className='flex flex-col justify-center gap-2 md:gap-4'>
                 <h2 className='font-extrabold text-xl'>{userData.name}</h2>
-                <Badge variant='outline' className='bg-slate-50 font-light'>{userData.jenis}</Badge>
+                <Badge variant='outline' className='bg-slate-50 font-light w-fit self-center'>{userData.jenis}</Badge>
               </div>
               <div className='flex'>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((star) => {
                   return (
                     <div key={star}>
                       <span
-                        className='start'
                         style={{
                           color: rating >= star ? 'gold' : 'gray',
-                          fontSize: `35px`,
+                          fontSize: `25px`,
                         }}
                         onClick={() => {
                           setScore(star)
                         }}
                       >
-                        {' '}
-                        ★{' '}
-                        <br />
+                  
+                        ★
                       </span>
                     </div>
                   )
                 })}
-                <p>( {!rating ? null : (rating).toFixed(2)} / 10 )</p>
+              </div>
+              <p>( {!rating ? null : (rating).toFixed(2)} / 10 )</p>
+              <div className='flex justify-center gap-2 md:gap-4 mt-4'>
+                <WhatsappShareButton
+                  url={`https://ulasan-liar.pages.dev/objek/${param.objek}}`}
+                  title={`Ulas Apa Saja Disini!\nBerikan Ulasan Untuk:\n${userData.name}\n`}>
+                  <WhatsappIcon size={32}></WhatsappIcon>
+                </WhatsappShareButton>
+                <TwitterShareButton
+                  url={`https://ulasan-liar.pages.dev/objek/${param.objek}`}
+                  title={`Ulas Apa Saja Disini!\nBerikan Ulasan Untuk:\n${userData.name}\n`}>
+                  <XIcon size={32}></XIcon>
+                </TwitterShareButton>
+              </div>
+              <br />
+              <div className='flex gap-2 md:gap-4'>
+                <div className='overflow-hidden max-w-[100px] self-center hidden md:block'>
+                  <img src="/fly.png" alt="" />
+                </div>
+                <div className='flex gap-2 md:gap-4'>
+                  <div className='overflow-hidden w-[175px] max-h-[200px] bg-indigo-500 border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg'>
+                    <img className='w-[175px] h-full' src={`https://pub-13068c32d5cb4eed8687217b9e9e2153.r2.dev/images/${userData.gambar1}`} alt="Gambar 1" />
+                  </div>
+                  <div className='overflow-hidden w-[175px] max-h-[200px] bg-indigo-500 border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg'>
+                    <img className='w-[175px] h-full' src={`https://pub-13068c32d5cb4eed8687217b9e9e2153.r2.dev/images/${userData.gambar2}`} alt="Gambar 2" />
+                  </div>
 
-              </div>
-                <div className='flex justify-center gap-5'>
-                  <WhatsappShareButton
-                    url={`https://ulasan-liar.pages.dev/objek/${param.objek}}`}
-                    title={`Ulas Apa Saja Disini!\nBerikan Ulasan Untuk:\n${userData.name}\n`}> 
-                    <WhatsappIcon size={32}></WhatsappIcon>
-                  </WhatsappShareButton>
-                  <TwitterShareButton
-                    url={`https://ulasan-liar.pages.dev/objek/${param.objek}`}
-                    title={`Ulas Apa Saja Disini!\nBerikan Ulasan Untuk:\n${userData.name}\n`}>
-                    <XIcon size={32}></XIcon>
-                  </TwitterShareButton>
                 </div>
-                <br />
-              <div className='flex gap-4'>
-                <div className='overflow-hidden max-w-[100px] self-center'>
-                  <img src="/fly.png" alt="" />
-                </div>
-                <div className='overflow-hidden w-[200px] max-h-[200px] bg-indigo-500 border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg'>
-                  <img className='w-[200px] h-full' src={`https://pub-13068c32d5cb4eed8687217b9e9e2153.r2.dev/images/${userData.gambar1}`} alt="Gambar 1" />
-                </div>
-                <div className='overflow-hidden w-[200px] max-h-[200px] bg-indigo-500 border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg'>
-                  <img className='w-[200px] h-full' src={`https://pub-13068c32d5cb4eed8687217b9e9e2153.r2.dev/images/${userData.gambar2}`} alt="Gambar 2" />
-                </div>
-                <div className='overflow-hidden max-w-[100px] self-center'>
+                <div className='overflow-hidden max-w-[100px] self-center hidden md:block'>
                   <img src="/fly.png" alt="" />
                 </div>
               </div>
-              <div className='bg-slate-50 w-fit p-5 flex flex-col items-center border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg'>
-                <p className='text-sm'>Dibuat pada: {new Date(Number(userData.created_at)).toLocaleString()}</p>
+              <div className='bg-slate-50 mx-2 w-fit p-5 flex flex-col items-center border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg'>
+                <p className='text-sm text-slate-500'>Dibuat pada: {new Date(Number(userData.created_at)).toLocaleString()}</p>
                 <hr />
-                <p className='pt-2'>{userData.description}</p>
+                <p className='pt-2 text-xs md:text-sm'>{userData.description}</p>
               </div>
             </div>
           </div>
@@ -370,7 +370,7 @@ export function Objek() {
 
         <SubHeader title='Ulasan - Ulasan'></SubHeader>
         <br />
-        <div className='gap-5 flex flex-row justify-center'>
+        <div className='flex md:flex-row flex-col mx-2 w-fit gap-2 md:gap-4 '>
           {reviews.map((review) => (
             <div key={review.id} className='bg-indigo-200 w-full p-3 border-b-4 border-b-indigo-500 hover:border-b-black border-l-4 border-l-indigo-500 hover:border-l-black align-top h-auto mb-2 flex flex-col justify-between gap-1 shadow-xl'>
               <div>
@@ -388,7 +388,7 @@ export function Objek() {
                           className='start'
                           style={{
                             color: review.score >= star ? 'orange' : 'gray',
-                            fontSize: `18px`,
+                            fontSize: `16px`,
                           }}
                           onClick={() => {
                             setScore(star)
@@ -401,9 +401,9 @@ export function Objek() {
                       </div>
                     )
                   })}
-                  <p>( {!review.score ? null : (review.score).toFixed(2)} / 10 )</p>
 
                 </div>
+                  <p>( {!review.score ? null : (review.score).toFixed(2)} / 10 )</p>
               </div>
               <div className='flex gap-4'>
                 <button onClick={() => agreeWithReview(review.id)} className='border-b-2 border-b-indigo-500 hover:border-b-black border-l-2 border-l-indigo-500 hover:border-l-black flex gap-2 px-2 py-1 bg-amber-300 text-xs items-center font-semibold'>

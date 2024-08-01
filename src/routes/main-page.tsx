@@ -4,7 +4,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 
 import { MenuCards } from '../components/MenuCards'
 import { SubHeader } from '@/components/SubHeader'
-import { MainHeader } from '@/components/MainHeader'
+
 
 import { Link } from '@tanstack/react-router'
 import { Badge } from '@/components/ui/badge'
@@ -78,12 +78,12 @@ export function Mainpage() {
   return (
     <>
 
-      <div className='flex flex-row justify-between px-8 gap-8 mt-10'>
+      <div className='flex flex-col md:flex-row justify-between px-4 md:px-8 gap-4 md:gap-8 mt-10'>
 
         {/* left */}
-        <div className='w-1/4'>
+        <div className='w-full md:w-1/4 '>
           <div className='flex flex-col items-center'>
-            <div className='overflow-hidden max-w-[100px]'>
+            <div className='overflow-hidden max-w-[75px] md:max-w-[100px]'>
               <img src="menu.png" alt="" />
             </div>
             <SubHeader title="Pilihan"></SubHeader>
@@ -95,30 +95,30 @@ export function Mainpage() {
 
 
         {/* center */}
-        <div className='w-1/2'>
+        <div className='md:w-1/2 w-full '>
           <div className='flex flex-col items-center'>
-            <div className='overflow-hidden max-w-[100px]'>
+            <div className='overflow-hidden max-w-[75px] md:max-w-[100px]'>
               <img src="ulasan-paling-ramai.png" alt="" />
             </div>
-            <MainHeader title="Ulasan Paling Ramai"></MainHeader>
+            <SubHeader title="Ulasan Paling Ramai"></SubHeader>
           </div>
           <div>
-            <ScrollArea className='h-screen'>
+            <ScrollArea>
               {data.map(objek => {
                 return (
-                  <div key={objek.id} className="bg-slate-50 flex gap-4 p-4 border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg items-center">
+                  <div key={objek.id} className="bg-slate-50 flex flex-col md:flex-row gap-2 md:gap-4 p-2 md:p-4 border-b-4 border-b-indigo-500 border-l-4 border-l-indigo-500 mb-4 shadow-lg">
                     <Link to={`/objek/${objek.id}`}>
-                      <div className="overflow-hidden max-w-24">
-                        <img src={`https://pub-13068c32d5cb4eed8687217b9e9e2153.r2.dev/images/${objek.gambar1}`} alt="gambar-objek" loading="lazy" />
+                      <div className="overflow-hidden w-fit md:max-w-24">
+                        <img className='' src={`https://pub-13068c32d5cb4eed8687217b9e9e2153.r2.dev/images/${objek.gambar1}`} alt="gambar-objek" />
                       </div>
                     </Link>
-                    <div className="flex flex-col justify-evenly">
+                    <div className="flex flex-col">
                       <div className="flex gap-2">
-                        <h1 className="font-bold text-md">{objek.name}</h1>
+                        <h1 className="font-bold text-xs md:text-md">{objek.name}</h1>
                         <Badge className="w-fit text-[8px]" variant="outline">{objek.jenis}</Badge>
                       </div>
-                      <p className="truncate ... font-light text-xs">{objek.description}</p>
-                      <p className="text-xs ">{objek.nreview} Ulasan</p>
+                      <p className="font-light text-[10px]">{objek.description}</p>
+                      <p className="text-xs">{objek.nreview} Ulasan</p>
                       <div>
                         <Link to={`/objek/${objek.id}`} className="text-sm font-bold text-blue-500 underline hover:no-underline">Lihat Ulasan</Link>
                       </div>
@@ -131,14 +131,14 @@ export function Mainpage() {
         </div>
 
         {/* right */}
-        <div className='w-1/4'>
+        <div className='w-full md:w-1/4 '>
           <div className='flex flex-col items-center'>
-            <div className='overflow-hidden max-w-[100px]'>
+            <div className='overflow-hidden max-w-[75px] md:max-w-[100px]'>
               <img src="space-iklan.png" alt="" />
             </div>
             <SubHeader title="Penawaran Menarik"></SubHeader>
           </div>
-          <div className='flex flex-row gap-8 w-full'>
+          <div className='flex flex-row gap-4 md:gap-8 w-full'>
             <SpaceIklan />
           </div>
         </div>
