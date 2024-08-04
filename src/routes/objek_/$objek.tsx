@@ -44,6 +44,7 @@ interface User {
   gambar1: string;
   gambar2: string;
   verified: number;
+  gmaps_url?: string;
 }
 
 interface Review {
@@ -240,7 +241,7 @@ export function Objek() {
                           setScore(star)
                         }}
                       >
-                  
+
                         ★
                       </span>
                     </div>
@@ -368,6 +369,17 @@ export function Objek() {
 
         <br />
 
+        { !userData?.gmaps_url ? <></>  : (
+          <div>
+          <iframe
+            width="400"
+            height="500"
+            loading="lazy"
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCKz0fbJr1y4OU29JbxEAD7EuZCumD2Khc
+              &q=${userData?.gmaps_url}}`}>
+          </iframe>
+        </div>)}
+
         <SubHeader title='Ulasan - Ulasan'></SubHeader>
         <br />
         <div className='flex md:flex-row flex-col mx-2 w-fit gap-2 md:gap-4 '>
@@ -403,7 +415,7 @@ export function Objek() {
                   })}
 
                 </div>
-                  <p>( {!review.score ? null : (review.score).toFixed(2)} / 10 )</p>
+                <p>( {!review.score ? null : (review.score).toFixed(2)} / 10 )</p>
               </div>
               <div className='flex gap-4'>
                 <button onClick={() => agreeWithReview(review.id)} className='border-b-2 border-b-indigo-500 hover:border-b-black border-l-2 border-l-indigo-500 hover:border-l-black flex gap-2 px-2 py-1 bg-amber-300 text-xs items-center font-semibold'>

@@ -13,6 +13,7 @@ export const BuatObjek: React.FC = () => {
   const [name, setName] = useState('');
   const [jenis, setJenis] = useState('');
   const [description, setDescription] = useState('');
+  const [gmaps_url, setGmaps_url] = useState('');
   const [gambar1, setGambar1] = useState<File | null>(null);
   const [gambar2, setGambar2] = useState<File | null>(null);
 
@@ -35,6 +36,7 @@ export const BuatObjek: React.FC = () => {
     formData.append('description', description);
     formData.append('gambar1', gambar1);
     formData.append('gambar2', gambar2);
+    formData.append('gmaps_url', gmaps_url);
 
     try {
       const response = await fetch('https://review-apa-saja.fitrah9ramadhan.workers.dev/api/users/register', {
@@ -109,6 +111,17 @@ export const BuatObjek: React.FC = () => {
               className='border-0 border-b-2 rounded-none border-b-indigo-500'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className='font-bold'>Alamat di Google Maps &nbsp;<span className='text-slate-600 italic'>( optional )</span></p>
+            <Input
+              className='border-0 border-b-2 rounded-none border-b-indigo-500'
+              placeholder='( cth: Warung Bu Nani )'
+              type="text"
+              value={gmaps_url}
+              onChange={(e) => setGmaps_url(e.target.value)}
               required
             />
           </div>
